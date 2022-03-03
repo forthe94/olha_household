@@ -11,6 +11,7 @@ def substitude_serv_acc():
 
     data['private_key'] = private_key.replace(' ', '\n')
     data['private_key_id'] = private_key_id
+    print(data)
     with open('serv_acc.json', 'w', encoding='utf-8') as file:
         json.dump(data, file)
 
