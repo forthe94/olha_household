@@ -84,15 +84,20 @@ async def default_message(message: types.Message):
     await message.answer(answer, reply_markup=reply_keyboard)
 
 
+async def on_startup(dp):
+    await bot.set_webhook('https://olha-household.herokuapp.com/')
+
 if __name__ == '__main__':
     print('Bot started')
     substitude_serv_acc()
+
     loop = asyncio.get_event_loop()
     # executor.start_polling(dispatcher=dp, loop=loop)
 
     executor.start_webhook(
         dispatcher=dp,
         skip_updates=True,
+        on_startup=on_startup,
         webhook_path='',
         port=PORT,
         host='0.0.0.0'
