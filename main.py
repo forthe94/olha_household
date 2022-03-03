@@ -93,7 +93,7 @@ if __name__ == '__main__':
     executor.start_webhook(
         dispatcher=dp,
         skip_updates=True,
-        webhook_path='',
+        webhook_path='https://olha-household.herokuapp.com/',
         port=PORT,
         host='0.0.0.0'
     )
