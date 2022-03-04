@@ -2,11 +2,11 @@
   "type": "service_account",
   "project_id": "sheets-api-342821",
   "private_key_id": "__PRIVATE_KEY_ID__",
-  "private_key": "-----BEGIN PRIVATE KEY-----\n__PRIVATE_KEY__\n-----END PRIVATE KEY-----\n",
-  "client_email": "serv-acc-341@sheets-api-342821.iam.gserviceaccount.com",
-  "client_id": "105006066812473322558",
+  "private_key": "__PRIVATE_KEY__",
+  "client_email": "new-344@sheets-api-342821.iam.gserviceaccount.com",
+  "client_id": "105677463919247953835",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/serv-acc-341%40sheets-api-342821.iam.gserviceaccount.com"
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/new-344%40sheets-api-342821.iam.gserviceaccount.com"
 }
