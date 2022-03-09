@@ -83,6 +83,7 @@ async def default_message(message: types.Message):
 
         await message.answer(answer, reply_markup=reply_keyboard)
     except:
+        await message.answer('ты что-то поломал возвращаемся обратно', reply_markup=reply_keyboard)
         stages[message.chat.id] = 0
 
 async def on_startup(dp):
