@@ -56,33 +56,34 @@ async def default_message(message: types.Message):
         stages[message.chat.id] = 0
 
     stage = stages[message.chat.id]
+    try:
+        if stage == 1:
+            chosen_name[message.chat.id] = message.text
+            answer = 'Выбери страницу'
+            reply_keyboard = await sheet_choose_stage()
+            stages[message.chat.id] = 2
+        elif stage == 2:
+            chosen_sheet[message.chat.id] = message.text
+            reply_keyboard = await item_choose_stage(message.text)
+            answer = 'Выбери дело/расход'
+            stages[message.chat.id] = 3
+        elif stage == 3:
+            item = message.text
+            name = chosen_name[message.chat.id]
+            sheet = chosen_sheet[message.chat.id]
+            add_item_to_sheet(googlesheet_id, name, sheet, item)
+            answer = 'Готово! Добавить еще дело/расход? Выбирай кому'
+            reply_keyboard = await name_choose_stage()
+            stages[message.chat.id] = 1
 
-    if stage == 1:
-        chosen_name[message.chat.id] = message.text
-        answer = 'Выбери страницу'
-        reply_keyboard = await sheet_choose_stage()
-        stages[message.chat.id] = 2
-    elif stage == 2:
-        chosen_sheet[message.chat.id] = message.text
-        reply_keyboard = await item_choose_stage(message.text)
-        answer = 'Выбери дело/расход'
-        stages[message.chat.id] = 3
-    elif stage == 3:
-        item = message.text
-        name = chosen_name[message.chat.id]
-        sheet = chosen_sheet[message.chat.id]
-        add_item_to_sheet(googlesheet_id, name, sheet, item)
-        answer = 'Готово! Добавить еще дело/расход? Выбирай кому'
-        reply_keyboard = await name_choose_stage()
-        stages[message.chat.id] = 1
+        else:
+            reply_keyboard = await name_choose_stage()
+            answer = 'Выбери кому добавить дело/расход'
+            stages[message.chat.id] = 1
 
-    else:
-        reply_keyboard = await name_choose_stage()
-        answer = 'Выбери кому добавить дело/расход'
-        stages[message.chat.id] = 1
-
-    await message.answer(answer, reply_markup=reply_keyboard)
-
+        await message.answer(answer, reply_markup=reply_keyboard)
+    except:
+        stages[message.chat.id] = 0
 
 async def on_startup(dp):
     await bot.set_webhook('https://olha-household.herokuapp.com/')
