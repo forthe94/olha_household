@@ -35,6 +35,7 @@ async def name_choose_stage():
 
 
 async def sheet_choose_stage():
+    sheets = get_sheets(googlesheet_id)
     sheet_choose_kb = ReplyKeyboardMarkup([[sheet.title for sheet in sheets[:2]] + ['Отмена']], resize_keyboard=True)
     return sheet_choose_kb
 
