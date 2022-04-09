@@ -81,11 +81,12 @@ async def default_message(message: types.Message):
             stages[message.chat.id] = 1
 
         await message.answer(answer, reply_markup=reply_keyboard)
-    except as e:
+    except Exception as e:
         print(e)
         reply_keyboard = await name_choose_stage()
         await message.answer('ты что-то поломал возвращаемся обратно', reply_markup=reply_keyboard)
         stages[message.chat.id] = 1
+
 
 async def on_startup(dp):
     await bot.set_webhook('https://olha-household.herokuapp.com/')
